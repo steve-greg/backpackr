@@ -27,26 +27,39 @@ export function gramsToOz(grams: number): number {
  * Format weight for display
  */
 export function formatWeight(oz: number, g: number, unit: 'imperial' | 'metric' = 'imperial'): string {
+  // Round to avoid floating point precision issues
+  const roundedOz = Math.round(oz * 100) / 100
+  const roundedG = Math.round(g)
+  
   if (unit === 'metric') {
-    return `${g}g`
+    return `${roundedG}g`
   }
   
-  if (oz >= 16) {
-    const pounds = Math.floor(oz / 16)
-    const remainingOz = oz % 16
+  if (roundedOz >= 16) {
+    const pounds = Math.floor(roundedOz / 16)
+    const remainingOz = Math.round((roundedOz % 16) * 100) / 100
     if (remainingOz === 0) {
       return `${pounds} lb`
     }
-    return `${pounds} lb ${remainingOz} oz`
+    // Format remaining ounces to remove unnecessary decimals
+    const formattedOz = remainingOz % 1 === 0 ? remainingOz.toString() : remainingOz.toFixed(1)
+    return `${pounds} lb ${formattedOz} oz`
   }
   
-  return `${oz} oz`
+  // Format ounces to remove unnecessary decimals
+  const formattedOz = roundedOz % 1 === 0 ? roundedOz.toString() : roundedOz.toFixed(1)
+  return `${formattedOz} oz`
 }
 
 /**
  * Calculate total weight and category breakdown for a pack
  */
-export function calculatePackWeight(pack: PackWithItems): WeightSummary {
+export function calculatePackWeight(pack: PackWithItems): WeightSummary
+export function calculatePackWeight(items: Array<{ gear_item: { weight_oz: number; weight_g: number; category: { slug: string } }; quantity: number }>): WeightSummary
+export function calculatePackWeight(packOrItems: PackWithItems | Array<{ gear_item: { weight_oz: number; weight_g: number; category: { slug: string } }; quantity: number }>): WeightSummary {
+  // Determine if we're working with a full pack or just items
+  const items = Array.isArray(packOrItems) ? packOrItems : packOrItems.pack_items
+  
   const categoryTotals: { [key in GearCategorySlug]: { oz: number; g: number; itemCount: number } } = {
     shelter: { oz: 0, g: 0, itemCount: 0 },
     cooking: { oz: 0, g: 0, itemCount: 0 },
@@ -60,7 +73,7 @@ export function calculatePackWeight(pack: PackWithItems): WeightSummary {
   let totalOz = 0
   let totalG = 0
 
-  pack.pack_items.forEach((packItem) => {
+  items.forEach((packItem) => {
     const { gear_item, quantity } = packItem
     const itemWeightOz = gear_item.weight_oz * quantity
     const itemWeightG = gear_item.weight_g * quantity

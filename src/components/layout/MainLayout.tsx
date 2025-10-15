@@ -31,9 +31,12 @@ export function MainLayout({ children }: MainLayoutProps) {
               <Link href="/gear" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
                 Browse Gear
               </Link>
-              <a href="#" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
+              <Link href="/packs/create" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
+                Create Pack
+              </Link>
+              <Link href="/packs" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
                 My Packs
-              </a>
+              </Link>
               <a href="#" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
                 Custom Gear
               </a>
@@ -72,9 +75,20 @@ export function MainLayout({ children }: MainLayoutProps) {
               >
                 Browse Gear
               </Link>
-              <a href="#" className="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">
+              <Link 
+                href="/packs/create" 
+                className="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Create Pack
+              </Link>
+              <Link 
+                href="/packs" 
+                className="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 My Packs
-              </a>
+              </Link>
               <a href="#" className="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">
                 Custom Gear
               </a>

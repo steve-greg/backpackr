@@ -51,12 +51,22 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="text-center mt-12">
-        <Link href="/gear">
-          <Button size="lg">
-            Start Planning Your Pack
-          </Button>
-        </Link>
+      <div className="text-center mt-12 space-y-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/packs/create">
+            <Button size="lg" className="w-full sm:w-auto">
+              Create a Pack
+            </Button>
+          </Link>
+          <Link href="/gear">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto">
+              Browse Gear
+            </Button>
+          </Link>
+        </div>
+        <p className="text-sm text-gray-500">
+          Start building your pack now - no account required!
+        </p>
       </div>
 
       <div className="mt-16 text-center text-sm text-gray-500">
