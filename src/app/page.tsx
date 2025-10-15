@@ -1,65 +1,62 @@
-import { Backpack } from 'lucide-react'
+import { MainLayout, Button } from '@/components'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <div className="flex justify-center items-center gap-3 mb-6">
-            <Backpack className="h-12 w-12 text-green-600" />
-            <h1 className="text-4xl font-bold text-gray-900">Backpackr</h1>
+    <MainLayout>
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 mb-6">
+          Welcome to Backpackr
+        </h1>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          Plan your perfect hiking and backpacking trips by organizing your gear,
+          calculating pack weight, and sharing your loadouts with fellow adventurers.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl">🎒</span>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Plan your perfect hiking and backpacking trips by organizing your gear,
-            calculating pack weight, and sharing your loadouts with fellow adventurers.
+          <h3 className="text-lg font-semibold mb-2">Organize Your Gear</h3>
+          <p className="text-gray-600">
+            Browse our comprehensive gear database and create custom packs
+            tailored to your adventures.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🎒</span>
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Organize Your Gear</h3>
-            <p className="text-gray-600">
-              Browse our comprehensive gear database and create custom packs
-              tailored to your adventures.
-            </p>
+        <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl">⚖️</span>
           </div>
-
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">⚖️</span>
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Calculate Weight</h3>
-            <p className="text-gray-600">
-              Track total pack weight and weight distribution by category
-              to optimize your load.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🔗</span>
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Share & Collaborate</h3>
-            <p className="text-gray-600">
-              Share your pack configurations with others and discover
-              gear setups from the community.
-            </p>
-          </div>
+          <h3 className="text-lg font-semibold mb-2">Calculate Weight</h3>
+          <p className="text-gray-600">
+            Track total pack weight and weight distribution by category
+            to optimize your load.
+          </p>
         </div>
 
-        <div className="text-center mt-12">
-          <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
-            Start Planning Your Pack
-          </button>
-        </div>
-
-        <div className="mt-16 text-center text-sm text-gray-500">
-          <p>🚧 Development in progress - This is a work in progress project</p>
+        <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+          <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl">🔗</span>
+          </div>
+          <h3 className="text-lg font-semibold mb-2">Share & Collaborate</h3>
+          <p className="text-gray-600">
+            Share your pack configurations with others and discover
+            gear setups from the community.
+          </p>
         </div>
       </div>
-    </div>
+
+      <div className="text-center mt-12">
+        <Button size="lg">
+          Start Planning Your Pack
+        </Button>
+      </div>
+
+      <div className="mt-16 text-center text-sm text-gray-500">
+        <p>🚧 Development in progress - This is a work in progress project</p>
+      </div>
+    </MainLayout>
   )
 }
