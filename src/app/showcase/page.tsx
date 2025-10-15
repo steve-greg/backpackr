@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { 
   MainLayout, 
   GearCard, 
@@ -60,6 +63,22 @@ const sampleCategories: GearCategory[] = [
 ]
 
 export default function ComponentShowcase() {
+  // Interactive state for demonstration
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategories, setSelectedCategories] = useState(['1', '2'])
+
+  const handleCategoryToggle = (categoryId: string) => {
+    setSelectedCategories(prev => 
+      prev.includes(categoryId) 
+        ? prev.filter(id => id !== categoryId)
+        : [...prev, categoryId]
+    )
+  }
+
+  const showAlert = (message: string) => {
+    alert(`Demo: ${message}`)
+  }
+
   return (
     <MainLayout>
       <div className="space-y-12">
@@ -75,14 +94,14 @@ export default function ComponentShowcase() {
 
         {/* Buttons & Basic UI */}
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Buttons & Badges</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Buttons & Badges</h2>
           <div className="space-y-4">
             <div className="flex flex-wrap gap-4">
-              <Button variant="primary">Primary Button</Button>
-              <Button variant="secondary">Secondary Button</Button>
-              <Button variant="outline">Outline Button</Button>
-              <Button variant="ghost">Ghost Button</Button>
-              <Button variant="destructive">Delete Button</Button>
+              <Button variant="primary" onClick={() => showAlert('Primary button clicked!')}>Primary Button</Button>
+              <Button variant="secondary" onClick={() => showAlert('Secondary button clicked!')}>Secondary Button</Button>
+              <Button variant="outline" onClick={() => showAlert('Outline button clicked!')}>Outline Button</Button>
+              <Button variant="ghost" onClick={() => showAlert('Ghost button clicked!')}>Ghost Button</Button>
+              <Button variant="destructive" onClick={() => showAlert('Delete button clicked!')}>Delete Button</Button>
             </div>
             <div className="flex flex-wrap gap-2">
               <Badge>Default Badge</Badge>
@@ -100,47 +119,55 @@ export default function ComponentShowcase() {
 
         {/* Search & Filters */}
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Search & Filters</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Search & Filters</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-medium mb-3">Search Bar</h3>
+              <h3 className="font-medium mb-3 text-gray-900">Search Bar</h3>
               <SearchBar 
                 placeholder="Search for gear..."
-                onSearch={(query) => console.log('Search:', query)}
+                onSearch={setSearchQuery}
               />
+              {searchQuery && (
+                <p className="text-sm text-gray-600 mt-2">
+                  Current search: &ldquo;{searchQuery}&rdquo;
+                </p>
+              )}
             </div>
             <div>
-              <h3 className="font-medium mb-3">Category Filter</h3>
+              <h3 className="font-medium mb-3 text-gray-900">Category Filter</h3>
               <CategoryFilter
                 categories={sampleCategories}
-                selectedCategories={['1', '2']}
-                onCategoryToggle={(id) => console.log('Toggle category:', id)}
+                selectedCategories={selectedCategories}
+                onCategoryToggle={handleCategoryToggle}
               />
+              <p className="text-sm text-gray-600 mt-2">
+                Selected: {selectedCategories.length} categories
+              </p>
             </div>
           </div>
         </section>
 
         {/* Cards */}
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Cards</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Cards</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-medium mb-3">Gear Card</h3>
+              <h3 className="font-medium mb-3 text-gray-900">Gear Card</h3>
               <GearCard
                 item={sampleGearItem}
-                onAddToPack={(item) => console.log('Add to pack:', item.name)}
-                onViewDetails={(item) => console.log('View details:', item.name)}
+                onAddToPack={(item) => showAlert(`Added "${item.name}" to pack!`)}
+                onViewDetails={(item) => showAlert(`Viewing details for "${item.name}"`)}
               />
             </div>
             <div>
-              <h3 className="font-medium mb-3">Pack Card</h3>
+              <h3 className="font-medium mb-3 text-gray-900">Pack Card</h3>
               <PackCard
                 pack={samplePack}
-                onView={(pack) => console.log('View pack:', pack.name)}
-                onEdit={(pack) => console.log('Edit pack:', pack.name)}
-                onDelete={(pack) => console.log('Delete pack:', pack.name)}
-                onDuplicate={(pack) => console.log('Duplicate pack:', pack.name)}
-                onShare={(pack) => console.log('Share pack:', pack.name)}
+                onView={(pack) => showAlert(`Viewing pack: "${pack.name}"`)}
+                onEdit={(pack) => showAlert(`Editing pack: "${pack.name}"`)}
+                onDelete={(pack) => showAlert(`Deleting pack: "${pack.name}"`)}
+                onDuplicate={(pack) => showAlert(`Duplicating pack: "${pack.name}"`)}
+                onShare={(pack) => showAlert(`Sharing pack: "${pack.name}"`)}
               />
             </div>
           </div>
@@ -148,7 +175,7 @@ export default function ComponentShowcase() {
 
         {/* Weight Display */}
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Weight Display</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Weight Display</h2>
           <div className="max-w-md">
             <WeightDisplay weightSummary={sampleWeightSummary} />
           </div>
@@ -156,7 +183,7 @@ export default function ComponentShowcase() {
 
         {/* Empty States */}
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Empty States</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Empty States</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg border p-6">
               <EmptyState
@@ -164,7 +191,7 @@ export default function ComponentShowcase() {
                 title="No packs yet"
                 description="Create your first pack to start organizing your gear"
                 action={
-                  <Button>
+                  <Button onClick={() => showAlert('Create Pack clicked!')}>
                     <Plus className="h-4 w-4 mr-2" />
                     Create Pack
                   </Button>
