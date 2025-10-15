@@ -13,7 +13,7 @@ export function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerPr
   }
   
   return (
-    <div className={`animate-spin ${sizeClasses[size]} ${className}`}>
+    <div data-testid="loading-spinner" className={`animate-spin ${sizeClasses[size]} ${className}`}>
       <svg className="w-full h-full" viewBox="0 0 24 24">
         <circle
           className="opacity-25"
@@ -50,7 +50,7 @@ export function EmptyState({
   className = '' 
 }: EmptyStateProps) {
   return (
-    <div className={`text-center py-12 ${className}`}>
+    <div data-testid="empty-state" className={`text-center py-12 ${className}`}>
       {icon && (
         <div className="flex justify-center mb-4">
           {icon}
