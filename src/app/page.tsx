@@ -1,3 +1,6 @@
+'use client'
+
+import Link from 'next/link'
 import { MainLayout, Button } from '@/components'
 
 export default function Home() {
@@ -18,7 +21,7 @@ export default function Home() {
           <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
             <span className="text-2xl">🎒</span>
           </div>
-          <h3 className="text-lg font-semibold mb-2">Organize Your Gear</h3>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900">Organize Your Gear</h3>
           <p className="text-gray-600">
             Browse our comprehensive gear database and create custom packs
             tailored to your adventures.
@@ -29,7 +32,7 @@ export default function Home() {
           <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
             <span className="text-2xl">⚖️</span>
           </div>
-          <h3 className="text-lg font-semibold mb-2">Calculate Weight</h3>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900">Calculate Weight</h3>
           <p className="text-gray-600">
             Track total pack weight and weight distribution by category
             to optimize your load.
@@ -40,7 +43,7 @@ export default function Home() {
           <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
             <span className="text-2xl">🔗</span>
           </div>
-          <h3 className="text-lg font-semibold mb-2">Share & Collaborate</h3>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900">Share & Collaborate</h3>
           <p className="text-gray-600">
             Share your pack configurations with others and discover
             gear setups from the community.
@@ -49,9 +52,11 @@ export default function Home() {
       </div>
 
       <div className="text-center mt-12">
-        <Button size="lg">
-          Start Planning Your Pack
-        </Button>
+        <Link href="/gear">
+          <Button size="lg">
+            Start Planning Your Pack
+          </Button>
+        </Link>
       </div>
 
       <div className="mt-16 text-center text-sm text-gray-500">

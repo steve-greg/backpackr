@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
+import Link from 'next/link'
 import { Backpack, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
@@ -19,15 +20,17 @@ export function MainLayout({ children }: MainLayoutProps) {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <Backpack className="h-8 w-8 text-green-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">Backpackr</span>
+              <Link href="/" className="flex items-center">
+                <Backpack className="h-8 w-8 text-green-600" />
+                <span className="ml-2 text-xl font-bold text-gray-900">Backpackr</span>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
+              <Link href="/gear" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
                 Browse Gear
-              </a>
+              </Link>
               <a href="#" className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">
                 My Packs
               </a>
@@ -62,9 +65,13 @@ export function MainLayout({ children }: MainLayoutProps) {
         {isMobileMenuOpen && (
           <div className="md:hidden border-t bg-white">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="#" className="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">
+              <Link 
+                href="/gear" 
+                className="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 Browse Gear
-              </a>
+              </Link>
               <a href="#" className="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium">
                 My Packs
               </a>
