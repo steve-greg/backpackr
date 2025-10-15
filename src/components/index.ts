@@ -11,6 +11,10 @@ export { WeightDisplay } from './pack/WeightDisplay'
 // Filter Components
 export { CategoryFilter } from './filters/CategoryFilter'
 
+// Auth Components
+export { LoginForm } from './auth/LoginForm'
+export { SignupForm } from './auth/SignupForm'
+
 // UI Components
 export { Badge } from './ui/Badge'
 export { Button } from './ui/Button'
